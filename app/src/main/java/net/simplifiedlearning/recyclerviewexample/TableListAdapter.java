@@ -32,10 +32,20 @@ public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.Word
 
     class WordViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
+        private final TextView wordItemView1;
+        private final TextView wordItemView2;
+        private final TextView wordItemView3;
 
         private WordViewHolder(View itemView) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.textView);
+            wordItemView1 = itemView.findViewById(R.id.text1);
+
+            wordItemView2 = itemView.findViewById(R.id.text2);
+
+            wordItemView3 = itemView.findViewById(R.id.text3);
+
+
         }
     }
 
@@ -54,6 +64,9 @@ public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.Word
     public void onBindViewHolder(WordViewHolder holder, int position) {
         TableModel current = mWords.get(position);
         holder.wordItemView.setText(current.getTablemodel()+"  "+current.getTablemodel1()+" "+current.getTablemodel2()+"\n");
+        holder.wordItemView1.setText(current.getTablemodel());
+        holder.wordItemView2.setText(current.getTablemodel1());
+        holder.wordItemView3.setText(current.getTablemodel2());
     }
 
     void setWords(List<TableModel> words){

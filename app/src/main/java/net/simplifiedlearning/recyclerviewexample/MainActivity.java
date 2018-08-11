@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         //getting the recyclerview from xml
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -83,11 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
           Product add=(
                 new Product(
-                        45,
                         "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-                        "13.3 inch, Silver, 1.35 kg",
-                        44.3,
-                        60000,
+                        "134.3 inch, Silver, 1.35 kg",
+                        444.3,
+                        600.0,
                         R.drawable.macbook));
         productList.add(add);
         mTableViewModel.insert1(add);

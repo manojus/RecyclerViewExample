@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import net.simplifiedlearning.recyclerviewexample.Product;
 import net.simplifiedlearning.recyclerviewexample.R;
 
-@Database(entities = {TableModel.class,Product.class}, version = 2)
+@Database(entities = {TableModel.class,Product.class}, version = 4)
 public abstract class TableRoomDatabase extends RoomDatabase {
 
     public abstract TableDao tableDao();
@@ -71,7 +71,7 @@ public abstract class TableRoomDatabase extends RoomDatabase {
             // Not needed if you only populate on creation.
             mDao.deleteAll();
 
-            TableModel room1 = new TableModel("Hello","hello","hello");
+            TableModel room1 = new TableModel("Hell3o1","hello13","h3ell1o");
             mDao.insert(room1);
          /*   word = new TableModel("World");
             mDao.insert(word)*/;
@@ -93,7 +93,7 @@ public abstract class TableRoomDatabase extends RoomDatabase {
             // Not needed if you only populate on creation.
          //   mDao1.deleteAll();
 
-            Product room1 = new Product(3318,"Hello1","hello1",120.1 ,110.1, R.drawable.macbook);
+            Product room1 = new Product("Hellod","hello131",120.311 ,1110.31, R.drawable.macbook);
             mDao1.insert(room1);
          /*   word = new TableModel("World");
             mDao.insert(word)*/;

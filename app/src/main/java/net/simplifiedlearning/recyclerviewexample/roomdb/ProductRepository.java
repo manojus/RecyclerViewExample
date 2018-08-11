@@ -52,8 +52,8 @@ public class ProductRepository {
 
         @Override
         protected Void doInBackground(final Product... params) {
-            Log.i("plaout","hello");
-           long hg= mAsyncTaskDao.insert(params[0]);
+          Log.i("plaout","hello");
+          long hg= mAsyncTaskDao.insert(params[0]);
             Log.i("plaout",hg+"result");
             return null;
         }

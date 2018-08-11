@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import net.simplifiedlearning.recyclerviewexample.roomdb.TableModel;
+
 import java.util.List;
 
 /**
@@ -55,10 +57,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
 
-    @Override
+  /*  @Override
     public int getItemCount() {
         return productList.size();
-    }
+    }*/
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -75,5 +77,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageView);
         }
+    }
+
+
+   void setWords1(List<Product> words1){
+        productList = words1;
+        notifyDataSetChanged();
+    }
+    @Override
+    public int getItemCount() {
+        if (productList != null)
+            return productList.size();
+        else return 0;
     }
 }

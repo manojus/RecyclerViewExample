@@ -8,10 +8,14 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {TableModel.class}, version = 2)
+import net.simplifiedlearning.recyclerviewexample.Product;
+import net.simplifiedlearning.recyclerviewexample.R;
+
+@Database(entities = {TableModel.class,Product.class}, version = 2)
 public abstract class TableRoomDatabase extends RoomDatabase {
 
     public abstract TableDao tableDao();
+    public abstract ProductDao productDao();
 
     private static TableRoomDatabase INSTANCE;
 
@@ -44,6 +48,7 @@ public abstract class TableRoomDatabase extends RoomDatabase {
             // If you want to keep the data through app restarts,
             // comment out the following line.
             new PopulateDbAsync(INSTANCE).execute();
+            new PopulateDbAsync1(INSTANCE).execute();
         }
     };
 
@@ -66,8 +71,30 @@ public abstract class TableRoomDatabase extends RoomDatabase {
             // Not needed if you only populate on creation.
             mDao.deleteAll();
 
-            TableModel word = new TableModel("Hello","hello","hello");
-            mDao.insert(word);
+            TableModel room1 = new TableModel("Hello","hello","hello");
+            mDao.insert(room1);
+         /*   word = new TableModel("World");
+            mDao.insert(word)*/;
+            return null;
+        }
+    }
+    private static class PopulateDbAsync1 extends AsyncTask<Void, Void, Void> {
+
+        private final ProductDao mDao1;
+
+        PopulateDbAsync1(TableRoomDatabase db) {
+            mDao1 = db.productDao();
+            //  mDao = (TableDao) db.tableDao();
+        }
+
+        @Override
+        protected Void doInBackground(final Void... params) {
+            // Start the app with a clean database every time.
+            // Not needed if you only populate on creation.
+         //   mDao1.deleteAll();
+
+            Product room1 = new Product(3318,"Hello1","hello1",120.1 ,110.1, R.drawable.macbook);
+            mDao1.insert(room1);
          /*   word = new TableModel("World");
             mDao.insert(word)*/;
             return null;

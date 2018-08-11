@@ -1,12 +1,18 @@
 package net.simplifiedlearning.recyclerviewexample;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 /**
  * Created by Belal on 10/18/2017.
  */
 
-
+@Entity(tableName = "room_table")
 public class Product {
+    @PrimaryKey
     private int id;
+    @ColumnInfo(name = "words")
     private String title;
     private String shortdesc;
     private double rating;

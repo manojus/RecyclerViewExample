@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     private TableViewModel mTableViewModel;
+   // private TableViewModel mTableViewModel1;
 
 
     //a list to store all the products
@@ -41,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
 //add me
       RecyclerView recyclerView1 = findViewById(R.id.recyclerview);
         final TableListAdapter adapter1 = new TableListAdapter(this);
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
+        //creating recyclerview adapter
+
         mTableViewModel.getAllWords().observe(this, new Observer<List<TableModel>>() {
             @Override
             public void onChanged(@Nullable final List<TableModel> words) {
@@ -74,29 +76,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+//end
         //initializing the productlist
         productList = new ArrayList<>();
 
 
-        //adding some items to our list
-        productList.add(
+          Product add=(
                 new Product(
-                        1,
+                        45,
                         "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
                         "13.3 inch, Silver, 1.35 kg",
-                        4.3,
+                        44.3,
                         60000,
                         R.drawable.macbook));
+        productList.add(add);
+        mTableViewModel.insert1(add);
+      /*  Product e = new Product(
+                22,
+                "Dell Inspiron 7000 Core i5 7th Gen - (8 GB/1 TB HDD/Windows 10 Home)",
+                "14 inch, Gray, 1.659 kg",
+                5.3,
+                60000,
+                R.drawable.dellinspiron);
+        productList.add(e);
+        mTableViewModel.insert1(e);*/
 
-        productList.add(
-                new Product(
-                        1,
-                        "Dell Inspiron 7000 Core i5 7th Gen - (8 GB/1 TB HDD/Windows 10 Home)",
-                        "14 inch, Gray, 1.659 kg",
-                        4.3,
-                        60000,
-                        R.drawable.dellinspiron));
 
   /*      productList.add(
                 new Product(
@@ -107,11 +111,21 @@ public class MainActivity extends AppCompatActivity {
                         60000,
                         R.drawable.surface));*/
 
-        //creating recyclerview adapter
-        ProductAdapter adapter = new ProductAdapter(this, productList);
+        final ProductAdapter adapter = new ProductAdapter(this, productList);
 
+        mTableViewModel
+                .getAllWords1()
+                .observe(this, new Observer<List<Product>>() {
+                    @Override
+                    public void onChanged(@Nullable final List<Product> words) {
+                        // Update the cached copy of the words in the adapter.
+                        Log.d("hfdr", words.size()+"");
+                        adapter.setWords1(words);
+                    }
+                });
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
+
     }
 
 
